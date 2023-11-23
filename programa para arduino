@@ -1,0 +1,29 @@
+// Hecho por JeanTech
+// Declarar de variables globales
+float temperatura; // Variable para almacenar el valor obtenido del sensor (0 a 1023)
+int LM35 = 0; // Variable del pin de entrada del sensor (A0)
+
+void setup() {
+  // Configuramos el puerto serial a 9600 bps
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Con analogRead leemos el sensor, recuerda que es un valor de 0 a 1023
+  temperatura = analogRead(LM35);
+
+  // Calculamos la temperatura con la fórmula
+  temperatura = (5.0 * temperatura * 100.0) / 1024.0;
+
+  // Imprime la marca o etiqueta
+  Serial.print("Hecho por JeanTech - Temperatura: ");
+
+  // Envia el dato de temperatura al puerto serial
+  Serial.print(temperatura);
+
+  // Salto de línea
+  Serial.print("\n");
+
+  // Esperamos un tiempo para repetir el loop
+  delay(1000);
+}
